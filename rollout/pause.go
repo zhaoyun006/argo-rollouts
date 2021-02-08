@@ -116,8 +116,7 @@ func (pCtx *pauseContext) CalculatePauseStatus(newStatus *v1alpha1.RolloutStatus
 }
 
 func getPauseCondition(rollout *v1alpha1.Rollout, reason v1alpha1.PauseReason) *v1alpha1.PauseCondition {
-	for i := range rollout.Status.PauseConditions {
-		cond := rollout.Status.PauseConditions[i]
+	for _, cond := range rollout.Status.PauseConditions {
 		if cond.Reason == reason {
 			return &cond
 		}
